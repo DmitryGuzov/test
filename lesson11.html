@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson11</title>
+</head>
+<body>
+    <script>    
+    // контекст
+    // Call, apply, toString,
+      const o = {
+          name: 'dsd',
+          lastName: 'asdasdasdadasd',
+      }
+      function t(){
+          return this.name +' ' + this.lastName;
+      }
+      t();// undefined
+      t.call(o);//вызывает ф-цтю с определенным контекстом      
+        
+        let bind = t.bind(o);// привязывает и возвращает ф-цию которую нужно вызвать
+        bind();
+        t.apply(o)// работает точно так же как call
+
+        // разница в том что 
+        function f(num){
+            return `${num} ${this.name}`
+        }
+        f.call(o,20);// второй и далее параметры это те, ктороые в ф-цию передаются
+        f.apply(o,[20])// здесь нужно передавать массив с теми параметрами как второй параметр, а не множество параметров
+
+        //
+        let arr = [1,3,4,3,2,34,3]
+        function u(){
+            return this;
+        }
+        arr.push(u);
+        arr[arr.length - 1]()
+        //переопределение toString
+        let ob = {m:32};
+        // родитель Object и дети его 
+        //array,function,Number,String,Boolean,
+
+        String(232323)// -> '232323'
+        new String(232323)// -> String{'232323'}
+        new Number(232323) + 2323// number
+        typeof new Number(121212)// 'object'
+        ob.toString()//-> '[object Object]'
+        let arr = [233,3,4,5]
+        arr.toString()// -> '233,3,4,5'
+        let t = 324;
+        t.toString();// -> '324'
+        function e(){
+            return 'asdasd'
+        }
+        e.toString();
+        typeof function(){}// -> 'function'
+
+        let o = 222
+        o.vasia = 232323;
+        o.vasia//undefined это объект обёртка, оно записалось в него и уничтожилось
+
+        function r(){}
+        r.toString = function(){
+            return 'sdasd'
+        }// 
+        r.toString()// -> 'sdasd'
+        const q = {n:3,ourToString:function(){return 'Object'}}
+        q.ourToString = function(){
+            return 1;
+        }
+        q.ourToString()// -> 1 ф-ция перезаписалась
+        
+
+
+    </script>
+</body>
+</html>
